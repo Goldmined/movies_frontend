@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const EntityMovie = ({ movie }) => {
-  const { title, poster, imdb, runtime, plot, genres,_id } = movie;
+  const { title, poster, imdb, runtime, plot, genres=[],_id } = movie;
   return (
     <article className="movie-line-entity">
       <div className="entity-poster" data-role="hover-wrap">
