@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { API_URL } from "../../config";
 
 const SimilarMovies = () => {
   const router = useRouter();
@@ -8,7 +9,7 @@ const SimilarMovies = () => {
   useEffect(() => {
     
     if (!movie_id) return;
-    let url = `http://localhost:3001/movies?limit=3&similar=${movie_id}`
+    let url = `${API_URL}/movies?limit=3&similar=${movie_id}`
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

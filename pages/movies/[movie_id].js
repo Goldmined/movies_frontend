@@ -5,6 +5,7 @@ import Synopsis from "../../components/movie/Synopsis";
 import { useRouter } from "next/router";
 import CommentMovie from "../../components/movie/Comment";
 import SimilarMovies from "../../components/movie/Similar";
+import { API_URL } from "../../config";
 
 const MoviePage = () => {
   const router = useRouter();
@@ -15,14 +16,13 @@ const MoviePage = () => {
     if (!movie_id) {
       return false;
     }
-    fetch(`http://localhost:3001/movies/${movie_id}`)
+    fetch(`${API_URL}/movies/${movie_id}`)
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.item);
         setComments(data.comments);
       });
   }, [movie_id]);
-  console.log(movie, movie_id);
   return (
     <MovieLayout>
       <div className="container">
