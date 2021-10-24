@@ -3,6 +3,8 @@ import EntityMovie from "../components/movie/Entity";
 import { useEffect, useState } from "react";
 import FilterPanel from "../components/panels/Filter";
 import { useRouter } from "next/router";
+import { API_URL } from "../config";
+
 const getUrl = (baseUrl, genre, year, sort)=>{
   if (genre) {
     baseUrl += `genre=${genre}&`
@@ -22,7 +24,7 @@ const IndexPage = () => {
   const [movies, setMovies] = useState([]);
   console.log({sort})
   useEffect(() => {
-    fetch("http://localhost:3001/movies")
+    fetch(`${API_URL}/movies`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data.items);
@@ -30,7 +32,7 @@ const IndexPage = () => {
   }, []);
   useEffect(() => {
     if (!genre&&!year&&!sort) return;
-    let url = getUrl("http://localhost:3001/movies?",genre, year, sort)
+    let url = getUrl(`${API_URL}/movies?`,genre, year, sort)
     
     fetch(url)
       .then((res) => res.json())
